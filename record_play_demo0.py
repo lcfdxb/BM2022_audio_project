@@ -43,7 +43,10 @@ def my_playing():
     recording_flag = 0
     pass
 
-def key_input(event):
+# On Tkinter window:
+# push 'r' to record
+# push 'p' to play
+def key_input(event): 
     if event.char == 'r':
         my_recording()
     elif event.char == 'p':
@@ -51,6 +54,7 @@ def key_input(event):
 
 root.bind("<Key>", key_input)
 
+print("recording...")
 while 1:
     if recording_flag==1:
         input_bytes = stream.read(block_len, exception_on_overflow = False)
