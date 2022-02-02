@@ -1,5 +1,8 @@
 # Burning Man 2022 Project
 
-## Package Dependency 
+### Start the collector program
+`$> python conversation_collector`
+
+### Package Dependency 
 - pyaudio
 - tkinter
