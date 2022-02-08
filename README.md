@@ -4,5 +4,9 @@
 `$> python conversation_collector`
 
 ### Package Dependency 
+- wave
 - pyaudio
 - tkinter
+
+## Design
+![design_diagram](./design/design.png)
