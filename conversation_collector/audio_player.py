@@ -7,12 +7,15 @@ class AudioPlayer:
 
     def start_playing(self):
         # TODO
+        print("Player: started to play!")
         return None
 
     def stop_playing(self):
         # TODO
+        print("Player: stopped playing!")
         return None
 
     def is_playing(self):
         # TODO
-        return True
+        print("Player: returned false to playing status!!")
+        return False

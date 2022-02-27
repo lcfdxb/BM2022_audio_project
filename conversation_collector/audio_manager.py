@@ -34,7 +34,7 @@ class AudioManager:
      - offer index to all available files
      - track what file is open for read or write (can't be both)
      - offer wave file handle by index
-     - create new wave file，name by timestamp
+     - create new wave file - name by timestamp
 
     Drawback of current implementation:
      - don't support delet (by the structure)

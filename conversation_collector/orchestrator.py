@@ -12,8 +12,8 @@ class Orchestrator:
     def __init__(self, oid):
         self.id = oid
         self.truth = toolings.get_truth()
-        # TODO: implement init logic for each module
         self.stateController = StateController()
+        # TODO: implement init logic for each module
         self.stateDisplayer = StateDisplayer()
         self.audioPlayer = AudioPlayer()
         self.audioRecorder = AudioRecorder()
@@ -21,11 +21,17 @@ class Orchestrator:
 
     def work(self):
         time.sleep(1)
-        # TODO: implement orchestrator cycle here. Below is a placeholder.
-        # TODO: notice that original design needs to be updated, in particular, we need to query for status from
-        # TODO: ... the audio player also each cycle. Additionally we may want to multithread each worker
-        # TODO: ... but I hate multithreading also we need to figure out a way to kill all workers once orch dies
-        if random.random() < 0.2:
+        if self.audioRecorder.is_recording():
+            return
+        if self.stateController.should_record():
+            self.audioPlayer.stop_playing()
+            self.stateDisplayer.display_message(message="Please record your conversation! >>>>>> >>>>>> >>>>>> >>>>>>")
+            self.audioRecorder.start_recording(duration=15)
+            self.stateController.ack_recording_began()
+        else:
+            if not self.audioPlayer.is_playing():
+                self.audioPlayer.start_playing()
+        if random.random() < 0.05:
             raise Exception("I don't feel like humming anymore.")
         if self.truth:
             print(str(self.id) + ": Hummmmmmmmmm....")

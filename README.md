@@ -7,6 +7,10 @@
 - wave
 - pyaudio
 - tkinter
+- RPI.GPIO (pip install RPi.GPIO)
+
+### TODO
+- need to handle garbage recordings (no voice / button mis trigger)
 
 ## Design
 ![design_diagram](./design/design.png)
