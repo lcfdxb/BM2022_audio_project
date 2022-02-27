@@ -20,18 +20,21 @@ class Orchestrator:
         self.audioManager = AudioManager()
 
     def work(self):
-        time.sleep(1)
+        time.sleep(2)
         if self.audioRecorder.is_recording():
             return
         if self.stateController.should_record():
             self.audioPlayer.stop_playing()
-            self.stateDisplayer.display_message(message="Please record your conversation! >>>>>> >>>>>> >>>>>> >>>>>>")
+            self.stateDisplayer.display_message(message="Please record your voice now!")
+            time.sleep(2)  # TODO: not sure if the speaking is blocking or not, I assume it is not so we want to start recording once the message is spoken?
             self.audioRecorder.start_recording(duration=15)
             self.stateController.ack_recording_began()
         else:
             if not self.audioPlayer.is_playing():
                 self.audioPlayer.start_playing()
-        if random.random() < 0.05:
+
+        # TODO: get rid of these below in prod
+        if random.random() < 0.02:
             raise Exception("I don't feel like humming anymore.")
         if self.truth:
             print(str(self.id) + ": Hummmmmmmmmm....")
