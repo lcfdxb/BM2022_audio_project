@@ -25,7 +25,7 @@ class Orchestrator:
             return
         if self.stateController.should_record():
             self.audioPlayer.stop_playing()
-            self.stateDisplayer.display_message(message="Please record your voice now!")
+            self.stateDisplayer.display_message(message="Please tell me a story!")
             time.sleep(2)  # TODO: not sure if the speaking is blocking or not, I assume it is not so we want to start recording once the message is spoken?
             self.audioRecorder.start_recording(duration=15)
             self.stateController.ack_recording_began()
