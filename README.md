@@ -14,7 +14,6 @@
 - Audio player
 - Audio recorder
 - Audio storage (wrap up?)
-- State controller (test with big button)
 - need to handle garbage recordings (no voice / button mis trigger)
 
 ### On ESPEAK-NG
