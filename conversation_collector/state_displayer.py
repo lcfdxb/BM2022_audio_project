@@ -1,10 +1,9 @@
-import toolings
 import os
 
 
 class StateDisplayer:
     def __init__(self):
-        self.truth = toolings.get_truth()
+        return
 
     def display_message(self, message="Hello"):
         print("Displaying Message: " + message)

@@ -1,5 +1,3 @@
-import toolings
-
 import RPi.GPIO as GPIO
 
 # Arcade Buttons Tutorials:
@@ -16,7 +14,6 @@ class StateController:
         self._should_record = True
 
     def __init__(self):
-        self.truth = toolings.get_truth()
         GPIO.cleanup()
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
