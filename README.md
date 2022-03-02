@@ -3,10 +3,16 @@
 ### Start the collector program
 `$> python conversation_collector`
 
-## TODO
-- Audio player - design different play styles
-- Audio player - implement different play styles
-- Audio player - switch to different styles per hour in day / number of files / etc.
+## Priorities
+### Art
+- Sound sculpture - design & implement different play styles
+  - By implementing sculptor.reshape_audio() logic
+- Sound sculpture - switch to different styles per hour in day / number of files / etc.
+  - By implementing sculptor.reshape_audio() logic
+### Fix
+- Audio player - 3 threads works pretty bad on RPi 4 HDMI.
+  - Experiment with merging audio files (1 thread only) or try analogue output?
+- Audio player - don't pick the same file in start_playing()
 - Audio player - need to handle garbage recordings (no voice / button mis trigger)
 - System - make all "print" statement also log to a file
 - System - test the heck out of this POC and make it more robust

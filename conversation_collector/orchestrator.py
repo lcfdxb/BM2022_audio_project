@@ -1,4 +1,3 @@
-import toolings
 import random
 import time
 from state_controller import StateController
@@ -12,7 +11,6 @@ from files_manager import FilesManager
 class Orchestrator:
     def __init__(self, oid):
         self.id = oid
-        self.truth = toolings.get_truth()
         self.stateController = StateController()
         self.stateDisplayer = StateDisplayer()
         self.filesManager = FilesManager()
@@ -21,6 +19,7 @@ class Orchestrator:
         self.audioManager = AudioManager()
 
     def work(self):
+        print(str(self.id) + ": Orchestrating....")
         time.sleep(2)
         if self.stateController.should_record():
             self.audioPlayer.stop_playing()
@@ -37,5 +36,3 @@ class Orchestrator:
         # TODO: Test for robustness. Get rid of these below in prod
         if random.random() < 0.02:
             raise Exception("I don't feel like humming anymore.")
-        if self.truth:
-            print(str(self.id) + ": Hummmmmmmmmm....")

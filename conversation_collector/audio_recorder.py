@@ -6,7 +6,9 @@ import wave
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
-samp_rate = 44100  # 44.1kHz sampling rate
+# TODO for some weird reason, my RPi can only play this rate.
+#  Hence need to sample at same rate (IDK)? Some devices don't support 48000 though
+samp_rate = 48000
 chunk = 4096  # 2^12 samples for buffer
 
 
@@ -24,7 +26,7 @@ class AudioRecorder:
 
         # TODO: this needs to be changed when we have >1 sound devices. I.e. we add a speaker with same prefix
         for ii in range(self._audio.get_device_count()):
-            if 'USB PnP Sound Device' in self._audio.get_device_info_by_index(ii).get('name'):
+            if 'USB PnP' in self._audio.get_device_info_by_index(ii).get('name'):
                 self._dev_index = ii
                 break
             raise Exception("Recorder: no input device found!")
@@ -61,3 +63,7 @@ class AudioRecorder:
         wavefile.writeframes(b''.join(frames))
         wavefile.close()
         return None
+
+    # TODO not sure what would be the best way to call this
+    def terminate(self):
+        self._audio.terminate()

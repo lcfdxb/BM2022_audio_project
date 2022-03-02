@@ -1,4 +1,3 @@
-import toolings
 import wave
 from datetime import datetime
 import os
@@ -42,7 +41,6 @@ class AudioManager:
     """
 
     def __init__(self):
-        self.truth = toolings.get_truth()
         self.file_list = []
         self.wf_r_handle_dict = {}
         self.wf_w_handle_dict = {}
