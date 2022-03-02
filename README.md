@@ -9,13 +9,29 @@
   - By implementing sculptor.reshape_audio() logic
 - Sound sculpture - switch to different styles per hour in day / number of files / etc.
   - By implementing sculptor.reshape_audio() logic
-### Fix
+### Fix/Optimizations
 - Audio player - 3 threads works pretty bad on RPi 4 HDMI.
   - Experiment with merging audio files (1 thread only) or try analogue output?
 - Audio player - don't pick the same file in start_playing()
 - Audio player - need to handle garbage recordings (no voice / button mis trigger)
+- Audio Recorder - in case of disaster during write
+  -  write to staging folder then move completed file to the audio folder
 - System - make all "print" statement also log to a file
 - System - test the heck out of this POC and make it more robust
+### Hardware
+- Power solution - solar? Swap batteries?
+  - Solar Ref: https://hive.burningman.org/posts/14167796
+- Make a robust and aestheticlly pleasing shell
+  - Directly out of wood?
+  - 3D printing with heat-resistent materials then put clay on top?
+  - etc.
+  - I'm thinking that we should use a 2-tier body where the lower one is reserved for mounting the button only
+- Playa installation solution
+  - what kind of pole to use
+  - the whole thing needs to be resistent to STRONG wind and heat / cold / RAIN
+### Nice to have
+- Audio Recorder - talks more
+  - e.g. after sampling: "Your recording will be played at dawn/evening/midnight!"
 
 ## Notes
 
