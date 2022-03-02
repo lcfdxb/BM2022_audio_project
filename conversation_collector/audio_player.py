@@ -1,4 +1,6 @@
 
+# TODO: don't play same file at the same time!
+# TODO: make sure to not play a file being written to!
 
 class AudioPlayer:
     _files_manager = None
