@@ -11,7 +11,10 @@
   - By implementing sculptor.reshape_audio() logic
 ### Fix/Optimizations
 - Audio player - 3 threads works pretty bad on RPi 4 HDMI.
-  - Experiment with merging audio files (1 thread only) or try analogue output?
+  - Update 3/3: looks like using thread is a bad idea. We should experiment merging all audio files into one using (maybe pudub)
+    - https://betterprogramming.pub/simple-audio-processing-in-python-with-pydub-c3a217dabf11
+  - ... then play it from a standalone process instead of thread. Also try analogue output.
+  - Also found that is_playing() sometimes doesn't work - looks like the threads don't exit for some reason.
 - Audio player - don't pick the same file in start_playing()
 - Audio player - need to handle garbage recordings (no voice / button mis trigger)
 - Audio Recorder - in case of disaster during write
