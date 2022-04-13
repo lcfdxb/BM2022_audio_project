@@ -19,9 +19,11 @@ class Orchestrator:
         self.audioManager = AudioManager()
 
     def work(self):
-        print(str(self.id) + ": Orchestrating....")
+        print("( ´ ▽ ` ) #" + str(self.id) + ": orchestrating....")
         time.sleep(2)
-        if self.stateController.should_record():
+        should_record = self.stateController.should_record()
+        print("( ´ ▽ ` ) #" + str(self.id) + ": should_record?=" + str(should_record))
+        if should_record:
             self.audioPlayer.stop_playing()
             self.stateDisplayer.display_message(message="I am listening.      Please tell me a story!")
             # TODO: not sure if the speaking is blocking or not,
@@ -30,9 +32,11 @@ class Orchestrator:
             self.stateController.ack_recording_began()
             self.audioRecorder.start_recording(duration_in_seconds=15)
         else:
-            if not self.audioPlayer.is_playing():
+            is_playing = self.audioPlayer.is_playing()
+            print("( ´ ▽ ` ) #" + str(self.id) + ": is_playing?=" + str(is_playing))
+            if not is_playing:
                 self.audioPlayer.start_playing()
 
         # TODO: Test for robustness. Get rid of these below in prod
-        if random.random() < 0.02:
-            raise Exception("I don't feel like humming anymore.")
+        if random.random() < 0.01:
+            raise Exception("(๑•̀д•́๑) I don't feel like humming anymore.")

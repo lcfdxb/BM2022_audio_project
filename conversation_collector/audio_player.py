@@ -4,6 +4,7 @@ import time
 import random
 import sculptor
 from threading import Thread
+from datetime import datetime
 
 
 class AudioPlayer:
@@ -70,10 +71,12 @@ class AudioPlayer:
             output=True
         )
         data = reshaped_wave_file.readframes(self.CHUNK_SIZE)
-        while data != '':
+        while len(data) > 0:
             if should_stop():
                 print("Player thread {}: stopped by master!".format(tid))
                 break
+            # this produces a lot of logs
+            # print("{} > Player thread {} writing data len({}) to stream.".format(datetime.now().strftime("%Y%m%d_%H%M%S"), tid, len(data)))
             stream.write(data)
             data = reshaped_wave_file.readframes(self.CHUNK_SIZE)
         stream.close()
