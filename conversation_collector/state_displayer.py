@@ -1,14 +1,16 @@
-import os
+import speake3
 
 
 class StateDisplayer:
     def __init__(self):
+        self._engine = speake3.Speake()
+        self._engine.set('voice', 'en-us')
+        self._engine.set('speed', '150')
+        self._engine.set('pitch', '50')
         return
 
     def display_message(self, message="Hello"):
         print("Displaying Message: " + message)
-        # Note that this is unique to my environment only - feel free to refactor this to make it more sane
-        command_pre = "ESPEAK_DATA_PATH='/home/pi/Desktop/espeak-ng' LD_LIBRARY_PATH=/home/pi/Desktop/espeak-ng/src:${LD_LIBRARY_PATH} /home/pi/Desktop/espeak-ng/src/espeak-ng '"
-        command_post = "' -v en-gb -p 35 -s 160 --stdout | aplay"  # Feel free to play around with pitch speed etc.
-        os.system(command_pre + message + command_post)
+        self._engine.say(message)
+        self._engine.talkback()
         return None

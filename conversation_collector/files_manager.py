@@ -4,7 +4,7 @@ import os
 
 
 class FilesManager:
-    _folder_path = '/home/pi/Desktop/recordings/'
+    _folder_path = '/home/milton/Desktop/recordings/'
 
     def __init__(self):
         return
@@ -17,3 +17,6 @@ class FilesManager:
         if len(os.listdir(self._folder_path)) == 0:
             return None
         return os.path.join(self._folder_path, random.choice(os.listdir(self._folder_path)))
+
+    def get_number_of_files(self):
+        return len(os.listdir(self._folder_path))

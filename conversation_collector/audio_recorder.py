@@ -26,10 +26,12 @@ class AudioRecorder:
 
         # TODO: this needs to be changed when we have >1 sound devices. I.e. we add a speaker with same prefix
         for ii in range(self._audio.get_device_count()):
-            if 'USB PnP' in self._audio.get_device_info_by_index(ii).get('name'):
+            device_name = str(self._audio.get_device_info_by_index(ii).get('name'))
+            print("Looking at " + device_name)
+            if 'USB PnP' in device_name:
                 self._dev_index = ii
-                break
-            raise Exception("Recorder: no input device found!")
+                return
+        raise Exception("Recorder: no input device found!")
 
     # This should be blocking, so no is_recording is needed
     def start_recording(self, duration_in_seconds=10):

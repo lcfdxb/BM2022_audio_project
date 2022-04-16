@@ -1,83 +1,79 @@
 import pyaudio
-import wave
 import time
 import random
 import sculptor
 from threading import Thread
-from datetime import datetime
+from pydub import AudioSegment
 
 
 class AudioPlayer:
-
     CHUNK_SIZE = 1024
     NUM_TRACKS_TO_PLAY_TOGETHER = 3
 
     _files_manager = None
-    _threads = []
+    _thread = None
     _audio = None
-    _stop_threads = False  # flag which each thread checks on to see if it needs to stop
+    _stop_thread = False  # flag which the thread checks on to see if it needs to stop
 
     def __init__(self, files_manager):
         self._files_manager = files_manager
         print("------- Spawning PyAudio -------")
         self._audio = pyaudio.PyAudio()
         print("------- Done Spawning PyAudio -------")
-        self._stop_threads = False
+        self._stop_thread = False
 
     def start_playing(self):
+        if self._files_manager.get_number_of_files() < self.NUM_TRACKS_TO_PLAY_TOGETHER:
+            return
+        # select X different recordings to play
         files_to_play = []
-        for ii in range(self.NUM_TRACKS_TO_PLAY_TOGETHER):
+        while len(files_to_play) < self.NUM_TRACKS_TO_PLAY_TOGETHER:
             file_path = self._files_manager.get_random_file_path()
-            if file_path is None:
-                return
-            files_to_play.append(file_path)
-
-        self._stop_threads = False
+            if file_path not in files_to_play:
+                files_to_play.append(file_path)
+        self._stop_thread = False
         print("Playing files: " + str(files_to_play))
-
-        for file_path in files_to_play:
-            tid = random.random() * 100000000
-            thread = Thread(target=self._play_wave_file, args=(tid, lambda: self._stop_threads, file_path,))
-            self._threads.append(thread)
-            thread.start()
+        tid = random.random() * 100000000
+        self._thread = Thread(target=self._play_wave_files, args=(tid, lambda: self._stop_thread, files_to_play,))
+        self._thread.start()
 
     def stop_playing(self):
-        self._stop_threads = True
+        self._stop_thread = True
         time.sleep(1)  # give them some time to terminate
-        self._threads = []
+        self._thread = None
 
     def is_playing(self):
-        for thread in self._threads:
-            if thread.is_alive():
-                return True
+        if self._thread and self._thread.is_alive():
+            return True
         return False
 
-    # TODO not sure what would be the best way to call this
-    def terminate(self):
-        self.stop_playing()
-        for thread in self._threads:
-            thread.join()
-        self._audio.terminate()
-
     # private method
-    def _play_wave_file(self, tid, should_stop, file):
+    def _play_wave_files(self, tid, should_stop, files):
+        if len(files) < 1:
+            raise Exception("Player: please play at least one file!")
         print("Player thread {}: started!".format(tid))
-        wave_file = wave.open(file, 'rb')
-        reshaped_wave_file = sculptor.reshape_audio(wave_file)
+
+        combined_sound = AudioSegment.from_file(files[0])
+        for i in range(1, len(files)):
+            sound = AudioSegment.from_file(files[i])
+            combined_sound = combined_sound.overlay(sound)
+        combined_sound = combined_sound.fade_in(3000).fade_out(3000)
+        # although you can use play(combined_sound) but then we lose the ability to stop the thread on demand
+        combined_sample = sculptor.reshape_audio(combined_sound)
         stream = self._audio.open(
-            format=self._audio.get_format_from_width(reshaped_wave_file.getsampwidth()),
-            channels=reshaped_wave_file.getnchannels(),
-            rate=reshaped_wave_file.getframerate(),
+            format=pyaudio.paFloat32,
+            channels=1,
+            rate=48000,
             output=True
         )
-        data = reshaped_wave_file.readframes(self.CHUNK_SIZE)
-        while len(data) > 0:
+
+        seg_start = 0
+        while seg_start < len(combined_sample):
             if should_stop():
                 print("Player thread {}: stopped by master!".format(tid))
                 break
-            # this produces a lot of logs
-            # print("{} > Player thread {} writing data len({}) to stream.".format(datetime.now().strftime("%Y%m%d_%H%M%S"), tid, len(data)))
-            stream.write(data)
-            data = reshaped_wave_file.readframes(self.CHUNK_SIZE)
+            seg_end = seg_start + self.CHUNK_SIZE
+            stream.write(combined_sample[seg_start:seg_end])
+            seg_start = seg_end
         stream.close()
         print("Player thread {}: exited peacefully!".format(tid))
