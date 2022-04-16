@@ -15,11 +15,11 @@ while True:
     try:
         orchestrator.work()
     except Exception as e:
-        print("!")
-        print("!")
+        print("!!")
+        print("!!!")
         print("Recycling orchestrator " + str(orchestrator.id) + " due to exception: " + str(e))
         traceback.print_exc()
-        print("!")
-        print("!")
+        print("!!!")
+        print("!!")
         oid += 1
         respawn_orchestrator()

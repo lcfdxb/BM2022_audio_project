@@ -24,13 +24,12 @@ class Orchestrator:
         if should_record:
             self.audioPlayer.stop_playing()
             time.sleep(2)
-            # TODO: Task: Audio Recorder - talks more
-            self.stateDisplayer.display_message(message="Hello. I will be listening for 15 seconds soon. Please tell me your story!")
+            self.stateDisplayer.announce_recording_prepare()
             time.sleep(5)
-            self.stateDisplayer.display_message(message="Hello. I am NOW listening. Please tell me your story!")
+            self.stateDisplayer.announce_recording_begin()
             self.stateController.ack_recording_began()
-            self.audioRecorder.start_recording(duration_in_seconds=15)
-            self.stateDisplayer.display_message(message="Thank you. Your recording has joined the stream of voices.")
+            succeeded = self.audioRecorder.record_audio(duration_in_seconds=60)
+            self.stateDisplayer.announce_recording_complete(success=succeeded)
         else:
             is_playing = self.audioPlayer.is_playing()
             print("ORCH#" + str(self.id) + ": is_playing?=" + str(is_playing))

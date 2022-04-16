@@ -25,4 +25,3 @@ class StateController:
 
     def ack_recording_began(self):
         self._should_record = False
-        return None

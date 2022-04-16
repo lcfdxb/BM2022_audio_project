@@ -1,7 +1,7 @@
 # Burning Man 2022 Project
 
 ### Start the collector program
-`$> python conversation_collector`
+`$> python3 conversation_collector`
 
 ## Priorities
 [Prio] until 5/31
@@ -11,16 +11,10 @@
   - By implementing sculptor.reshape_audio() logic
 - [LOW] Sound sculpture - switch to different styles per hour in day / number of files / etc.
   - By implementing sculptor.reshape_audio() logic
-### System
-- [HIGH] Audio player - need to handle garbage recordings (no voice / button mis trigger)
-- [HIGH] Audio recorder - in case of disaster during write
-  - investigate if we need to make it more robust
-  - maybe write to staging folder then move completed file to the audio folder
+### Platform
 - [MED] System - make all "print" statement also log to a file
-- [LOW] System - test the heck out of this POC and make it more robust
-### UX
-- [MED] Audio Recorder - talks more
-  - e.g. better UI when sampling, and maybe randomly select from several prompts
+- [LOW] UI/UX - make state displayer better
+- [LOW] Recorder - develop a better algorithm to handle silent recordings
 ### Hardware
 - [HIGH] Design & implement power solution - solar / batteries
   - https://hive.burningman.org/posts/14167796

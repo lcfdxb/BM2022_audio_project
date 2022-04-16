@@ -23,12 +23,12 @@ class AudioPlayer:
         self._stop_thread = False
 
     def start_playing(self):
-        if self._files_manager.get_number_of_files() < self.NUM_TRACKS_TO_PLAY_TOGETHER:
+        if self._files_manager.get_number_of_processed_files() < self.NUM_TRACKS_TO_PLAY_TOGETHER:
             return
         # select X different recordings to play
         files_to_play = []
         while len(files_to_play) < self.NUM_TRACKS_TO_PLAY_TOGETHER:
-            file_path = self._files_manager.get_random_file_path()
+            file_path = self._files_manager.get_random_processed_file_path()
             if file_path not in files_to_play:
                 files_to_play.append(file_path)
         self._stop_thread = False
