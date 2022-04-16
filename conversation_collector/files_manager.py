@@ -4,6 +4,7 @@ import os
 
 
 class FilesManager:
+    # TODO: customize this for your Pi
     _folder_path = '/home/milton/Desktop/recordings/'
 
     def __init__(self):
