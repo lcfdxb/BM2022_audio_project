@@ -27,11 +27,11 @@ class StateDisplayer:
     def __init__(self):
         self._engine = speake3.Speake()
         self._engine.set('voice', 'en-us')
-        self._engine.set('speed', '150')
-        self._engine.set('pitch', '50')
+        self._engine.set('speed', '120')
+        self._engine.set('pitch', '45')
 
     def display_message(self, message="Hello!"):
-        print("Saying: " + message)
+        print("I'm saying: " + message)
         self._engine.say(message)
         self._engine.talkback()
 

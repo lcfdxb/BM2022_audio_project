@@ -1,10 +1,10 @@
 import random
 import time
+from poet import Poet
 from state_controller import StateController
 from state_displayer import StateDisplayer
 from audio_player import AudioPlayer
 from audio_recorder import AudioRecorder
-from files_manager import FilesManager
 
 
 class Orchestrator:
@@ -12,9 +12,9 @@ class Orchestrator:
         self.id = oid
         self.stateController = StateController()
         self.stateDisplayer = StateDisplayer()
-        self.filesManager = FilesManager()
-        self.audioRecorder = AudioRecorder(files_manager=self.filesManager)
-        self.audioPlayer = AudioPlayer(files_manager=self.filesManager)
+        self.audioRecorder = AudioRecorder()
+        self.audioPlayer = AudioPlayer()
+        self.poet = Poet()
 
     def work(self):
         print("ORCH#" + str(self.id) + ": orchestrating....")
@@ -34,6 +34,7 @@ class Orchestrator:
             is_playing = self.audioPlayer.is_playing()
             print("ORCH#" + str(self.id) + ": is_playing?=" + str(is_playing))
             if not is_playing:
+                self.stateDisplayer.display_message(self.poet.recite())
                 self.audioPlayer.start_playing()
 
         # TODO: Test for robustness. Get rid of these below in prod

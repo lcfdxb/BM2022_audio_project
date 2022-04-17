@@ -1,6 +1,8 @@
 import pyaudio
 import wave
 import os
+import logging
+import files_manager
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 
@@ -17,43 +19,41 @@ chunk = 4096  # 2^12 samples for buffer
 
 class AudioRecorder:
     _dev_index = 0
-    _files_manager = None
     _audio = None
 
-    def __init__(self, files_manager):
-        self._files_manager = files_manager
-
-        print("------- Spawning PyAudio -------")
+    def __init__(self):
+        logging.warning("AudioRecorder: Started Spawning PyAudio")
         self._audio = pyaudio.PyAudio()
-        print("------- Done Spawning PyAudio -------")
+        logging.warning("AudioRecorder: Finished Spawning PyAudio")
 
         # TODO: this needs to be changed when we have >1 sound devices. I.e. we add a speaker with same prefix
         for ii in range(self._audio.get_device_count()):
             device_name = str(self._audio.get_device_info_by_index(ii).get('name'))
-            print("Looking at " + device_name)
+            logging.info("AudioRecorder: Looking at " + device_name)
+            # TODO: fix this when using an external speaker
             if 'USB PnP' in device_name:
                 self._dev_index = ii
                 return
         raise Exception("Recorder: no input device found!")
 
     def record_audio(self, duration_in_seconds=10):
-        file_name = self._files_manager.get_new_file_name_no_ext()
+        file_name = files_manager.get_new_file_name_no_ext()
         # tmp path also helps when it blows up during recording.
         # The audio player reads form final_path thus out of blast radius.
-        tmp_save_path = self._files_manager.get_new_tmp_file_path(file_name)
-        final_save_path = self._files_manager.get_new_processed_file_path(file_name)
+        tmp_save_path = files_manager.get_new_tmp_file_path(file_name)
+        final_save_path = files_manager.get_new_processed_file_path(file_name)
 
         stream = self._audio.open(format=form_1, rate=samp_rate, channels=chans,
                                   input_device_index=self._dev_index, input=True,
                                   frames_per_buffer=chunk)
 
-        print("Recorder: started to record for " + str(duration_in_seconds) + " seconds!")
+        logging.info("AudioRecorder: started to record for " + str(duration_in_seconds) + " seconds!")
         frames = []
         # loop through stream and append audio chunks to frame array
         for ii in range(0, int((samp_rate / chunk) * duration_in_seconds)):
             data = stream.read(chunk)
             frames.append(data)
-        print("Recorder: finished recording!")
+        logging.info("AudioRecorder:  finished recording!")
         stream.stop_stream()
         stream.close()
 

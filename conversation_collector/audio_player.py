@@ -1,7 +1,9 @@
 import pyaudio
 import time
 import random
+import logging
 import sculptor
+import files_manager
 from threading import Thread
 from pydub import AudioSegment
 
@@ -10,25 +12,23 @@ class AudioPlayer:
     CHUNK_SIZE = 1024
     NUM_TRACKS_TO_PLAY_TOGETHER = 3
 
-    _files_manager = None
     _thread = None
     _audio = None
     _stop_thread = False  # flag which the thread checks on to see if it needs to stop
 
-    def __init__(self, files_manager):
-        self._files_manager = files_manager
-        print("------- Spawning PyAudio -------")
+    def __init__(self):
+        logging.warning("AudioPlayer: Started Spawning PyAudio")
         self._audio = pyaudio.PyAudio()
-        print("------- Done Spawning PyAudio -------")
+        logging.warning("AudioPlayer: Finished Spawning PyAudio")
         self._stop_thread = False
 
     def start_playing(self):
-        if self._files_manager.get_number_of_processed_files() < self.NUM_TRACKS_TO_PLAY_TOGETHER:
+        if files_manager.get_number_of_processed_files() < self.NUM_TRACKS_TO_PLAY_TOGETHER:
             return
         # select X different recordings to play
         files_to_play = []
         while len(files_to_play) < self.NUM_TRACKS_TO_PLAY_TOGETHER:
-            file_path = self._files_manager.get_random_processed_file_path()
+            file_path = files_manager.get_random_processed_file_path()
             if file_path not in files_to_play:
                 files_to_play.append(file_path)
         self._stop_thread = False

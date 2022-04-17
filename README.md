@@ -7,30 +7,35 @@
 [Prio] until 5/31
 
 ### Art
-- [MED] Sound sculpture - design & implement different play styles
+- [MED][---] Sound sculpture - design & implement different play styles
   - By implementing sculptor.reshape_audio() logic
-- [LOW] Sound sculpture - switch to different styles per hour in day / number of files / etc.
+- [LOW][---] Sound sculpture - switch to different styles per hour in day / number of files / etc.
   - By implementing sculptor.reshape_audio() logic
 ### Platform
-- [MED] System - make all "print" statement also log to a file
-- [LOW] UI/UX - make state displayer better
-- [LOW] Recorder - develop a better algorithm to handle silent recordings
+- [HIGH][milton] Recorder - when player uses external speaker - TODO: fix this when using an external speaker
+- [LOW][---] UI/UX - add more ideas / poems to the Poet
+- [LOW][---] Recorder - develop a better algorithm to handle silent recordings
 ### Hardware
-- [HIGH] Design & implement power solution - solar / batteries
+- [HIGH][milton] Design & implement power solution - solar / batteries
   - https://hive.burningman.org/posts/14167796
   - https://forums.raspberrypi.com/viewtopic.php?t=96544
   - https://howchoo.com/g/mmfkn2rhoth/raspberry-pi-solar-power
-- [HIGH] Make a POC shell
-  - so we can demo this around
-- [MED] Playa installation solution: Pole
+- [HIGH][milton] Make a POC shell
+  - ...and assemble it with full features. Then schedule time to demo this around.
+- [MED][milton] Playa installation solution: Pole
   - what kind of pole to use?
   - needs to be resistant to STRONG wind
-- [LOW] Make a robust and aesthetically pleasing shell
+- [LOW][---] Make a robust and aesthetically pleasing shell
+  - Ideally we can have some artist to do this
   - Directly out of wood? or 3D printed w/ heat-resistant materials?
-- [LOW] Playa installation solution: Harsh environment
+- [LOW][---] Playa installation solution: Harsh environment
   - the whole thing needs to be resistant to STRONG wind / heat / rain
   - https://forums.raspberrypi.com/viewtopic.php?t=54812
   - https://forums.raspberrypi.com/viewtopic.php?f=63&t=44684
+### Production Checklist
+- [todo] Orchestrator - remove exception "I don't feel like humming anymore." when ready for production.
+- [todo] private beta indoors for 3 days
+- [todo] public beta outdoors (with solar) for 12 hours+
 
 ## Notes
 
@@ -44,7 +49,7 @@
 - ESPEAK-NG `sudo apt-get install espeak && pip3 install speake3`
 
 ### Hard-wiring / Setup
-- Make sure to update the hard-coded path in files_manager.py `_folder_path`
+- Make sure to update the hard-coded path in files_manager.py `_ROOT_PATH` and create sub-directories
 
 ## Design
 *Mostly Outdated*
