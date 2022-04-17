@@ -22,9 +22,7 @@
   - https://howchoo.com/g/mmfkn2rhoth/raspberry-pi-solar-power
 - [HIGH][milton] Make a POC shell
   - ...and assemble it with full features. Then schedule time to demo this around.
-- [MED][milton] Playa installation solution: Pole
-  - what kind of pole to use?
-  - needs to be resistant to STRONG wind
+- [MED][milton] Build the Playa Pole
 - [LOW][---] Make a robust and aesthetically pleasing shell
   - Ideally we can have some artist to do this
   - Directly out of wood? or 3D printed w/ heat-resistant materials?
@@ -52,5 +50,8 @@
 - Make sure to update the hard-coded path in files_manager.py `_ROOT_PATH` and create sub-directories
 
 ## Design
-*Mostly Outdated*
+*Installation Design*
+![hardware_design_diagram](./design/Installation Hardware Design v0.1.png)
+
+*Software Design, but mostly outdated*
 ![design_diagram](./design/design.png)

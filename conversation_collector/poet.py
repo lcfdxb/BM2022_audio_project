@@ -13,6 +13,11 @@ class Poet:
         # milton
         "I love you.",
         "This will, also change.",
+        "Help! I am trapped in this machine.",
+        "Speech has allowed the communication of ideas. Enabling human beings to work together to build the impossible.",
+        "With the technology at our disposal, the possibilities are unbounded. All we need to do, is make sure we keep talking.",
+        "It is awfully considerate of you to think of me here. And I am much obligated to you for making it clear, that I am not here.",
+        "Stories connect one and another, and sometimes is the only thing we have at the end.",
         # stellar
         "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
         "For this, for everything, we are out of tune.",
@@ -23,7 +28,9 @@ class Poet:
         "Do not, go gentle into that good night.",
         # lu
         "All of the gin joints, in all the towns, in all the world, she walks into mine.",
-        # more to come...
+        # lily
+        "Oh traveller, if you are in search of that. Don't look outside, look inside yourself, and seek that.",
+        # and more to come...
     ]
 
     def __init__(self):
