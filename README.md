@@ -51,7 +51,7 @@
 
 ## Design
 *Installation Design*
-![hardware_design_diagram](./design/Installation Hardware Design v0.1.png)
+![hardware_design_diagram](./design/Installation&#32;Hardware&#32;Design&#32;v0.1.png)
 
 *Software Design, but mostly outdated*
 ![design_diagram](./design/design.png)
