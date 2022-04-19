@@ -1,7 +1,15 @@
 # Burning Man 2022 Project
 
 ### Start the collector program
-`$> python3 conversation_collector`
+`python3 conversation_collector`
+
+To auto run at boot:
+
+`cp -r /etc/xdg/lxsession ~/.config/` *only If you don't have ~/.config/lxsession already*
+
+`nano ~/.config/lxsession/LXDE-pi/autostart`
+
+add `@lxterminal -e python3 /home/milton/Desktop/conversation_collector/`
 
 ## Priorities
 [Prio] until 5/31
@@ -12,9 +20,10 @@
 - [LOW][---] Sound sculpture - switch to different styles per hour in day / number of files / etc.
   - By implementing sculptor.reshape_audio() logic
 ### Platform
-- [HIGH][milton] Recorder - when player uses external speaker - TODO: fix this when using an external speaker
+- [MEDIUM][---] Recorder - develop a better algorithm to handle silent recordings
+  - we shouldn't normalize silent recordings to -20 which will create a constant loud static noise
+  - maybe when all recording is universally low, either don't normalize or don't save
 - [LOW][---] UI/UX - add more ideas / poems to the Poet
-- [LOW][---] Recorder - develop a better algorithm to handle silent recordings
 ### Hardware
 - [HIGH][milton] Design & implement power solution - solar / batteries
   - https://hive.burningman.org/posts/14167796
@@ -47,11 +56,12 @@
 - ESPEAK-NG `sudo apt-get install espeak && pip3 install speake3`
 
 ### Hard-wiring / Setup
-- Make sure to update the hard-coded path in files_manager.py `_ROOT_PATH` and create sub-directories
+- Make sure to update the hard-coded path in files_manager.py `ROOT_PATH` and create sub-directories
+- Also updates `DEVICE_NAME` if you use a different speaker-mic than Jabra SPEAK 410
 
 ## Design
 *Installation Design*
-![hardware_design_diagram](./design/Installation Hardware Design v0.1.png)
+![hardware_design_diagram](./design/Installation&#32;Hardware&#32;Design&#32;v0.1.png)
 
 *Software Design, but mostly outdated*
 ![design_diagram](./design/design.png)

@@ -12,6 +12,7 @@ class AudioPlayer:
     CHUNK_SIZE = 1024
     NUM_TRACKS_TO_PLAY_TOGETHER = 3
 
+    _dev_index = 0
     _thread = None
     _audio = None
     _stop_thread = False  # flag which the thread checks on to see if it needs to stop
@@ -21,6 +22,14 @@ class AudioPlayer:
         self._audio = pyaudio.PyAudio()
         logging.warning("AudioPlayer: Finished Spawning PyAudio")
         self._stop_thread = False
+
+        for ii in range(self._audio.get_device_count()):
+            device_name = str(self._audio.get_device_info_by_index(ii).get('name'))
+            logging.info("AudioPlayer: Looking at " + device_name)
+            if files_manager.DEVICE_NAME in device_name:
+                self._dev_index = ii
+                return
+        raise Exception("Recorder: no output device found!")
 
     def start_playing(self):
         if files_manager.get_number_of_processed_files() < self.NUM_TRACKS_TO_PLAY_TOGETHER:
@@ -64,6 +73,7 @@ class AudioPlayer:
             format=pyaudio.paFloat32,
             channels=1,
             rate=48000,
+            output_device_index=self._dev_index,
             output=True
         )
 

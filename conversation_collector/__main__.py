@@ -1,3 +1,4 @@
+import time
 import logging
 import traceback
 import files_manager
@@ -10,6 +11,7 @@ def respawn_orchestrator():
     logging.warning("Spawned new orchestrator " + str(orchestrator.id))
 
 
+time.sleep(10)  # wait for audio devices to be available
 oid = 0
 orchestrator = Orchestrator(oid=oid)
 log_file_path = files_manager.get_new_log_file_path(files_manager.get_new_file_name_no_ext())
@@ -22,5 +24,6 @@ while True:
     except Exception as e:
         logging.error("Recycling orchestrator " + str(orchestrator.id) + " due to exception: " + str(e))
         traceback.print_exc()
+        orchestrator.audioPlayer.start_playing()  # take care of orphan processes
         oid += 1
         respawn_orchestrator()

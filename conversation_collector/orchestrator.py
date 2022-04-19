@@ -35,6 +35,7 @@ class Orchestrator:
             print("ORCH#" + str(self.id) + ": is_playing?=" + str(is_playing))
             if not is_playing:
                 self.stateDisplayer.display_message(self.poet.recite())
+                time.sleep(3)  # this is needed to fix the Jabra traffic issue
                 self.audioPlayer.start_playing()
 
         # TODO: Test for robustness. Get rid of these below in prod

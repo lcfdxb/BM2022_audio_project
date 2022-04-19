@@ -11,9 +11,7 @@ from pydub.silence import detect_nonsilent
 
 form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
-# TODO for some weird reason, my RPi can only play this rate.
-#  Hence need to sample at same rate (IDK)? Some devices don't support 48000 though
-samp_rate = 48000
+samp_rate = 16000  # works for Jabra. Its output is still 1 channel 48000 though
 chunk = 4096  # 2^12 samples for buffer
 
 
@@ -26,12 +24,10 @@ class AudioRecorder:
         self._audio = pyaudio.PyAudio()
         logging.warning("AudioRecorder: Finished Spawning PyAudio")
 
-        # TODO: this needs to be changed when we have >1 sound devices. I.e. we add a speaker with same prefix
         for ii in range(self._audio.get_device_count()):
             device_name = str(self._audio.get_device_info_by_index(ii).get('name'))
             logging.info("AudioRecorder: Looking at " + device_name)
-            # TODO: fix this when using an external speaker
-            if 'USB PnP' in device_name:
+            if files_manager.DEVICE_NAME in device_name:
                 self._dev_index = ii
                 return
         raise Exception("Recorder: no input device found!")

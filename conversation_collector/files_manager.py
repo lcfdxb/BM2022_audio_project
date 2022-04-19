@@ -2,12 +2,13 @@ from datetime import datetime
 import random
 import os
 
-# WARN: customize this for your Pi
+# WARN: customize these for your Pi
 #       make sure to manually create these folders under the directory:
 #     > /tmp
 #     > /processed
 #     > /logs
 ROOT_PATH = '/home/milton/Desktop/recordings/'
+DEVICE_NAME = 'Jabra'
 
 
 def get_new_file_name_no_ext():
