@@ -3,13 +3,15 @@
 ### Start the collector program
 `python3 conversation_collector`
 
-To auto run at boot:
+To auto run at boot (from usb-drive, or modify the script to run a local program):
+
+Copy the `scripts/auto_run_from_usb.sh` to pi's `Desktop`
 
 `cp -r /etc/xdg/lxsession ~/.config/` *only If you don't have ~/.config/lxsession already*
 
 `nano ~/.config/lxsession/LXDE-pi/autostart`
 
-add `@lxterminal -e python3 /home/milton/Desktop/conversation_collector/`
+Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 
 ## Priorities
 [Prio] until 5/31

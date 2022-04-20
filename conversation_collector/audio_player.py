@@ -10,7 +10,7 @@ from pydub import AudioSegment
 
 class AudioPlayer:
     CHUNK_SIZE = 1024
-    NUM_TRACKS_TO_PLAY_TOGETHER = 3
+    NUM_TRACKS_TO_PLAY_TOGETHER = 5
 
     _dev_index = 0
     _thread = None
