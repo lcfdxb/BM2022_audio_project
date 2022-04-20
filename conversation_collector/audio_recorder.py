@@ -14,6 +14,9 @@ chans = 1  # 1 channel
 samp_rate = 16000  # works for Jabra. Its output is still 1 channel 48000 though
 chunk = 4096  # 2^12 samples for buffer
 
+MAX_LOUDNESS = -20
+MAX_LOUDNESS_PUNISHMENT = -30
+
 
 class AudioRecorder:
     _dev_index = 0
@@ -61,16 +64,16 @@ class AudioRecorder:
         wavefile.writeframes(b''.join(frames))
         wavefile.close()
 
-        # normalize the recording to generate a final file
-        raw_recording = AudioSegment.from_file(tmp_save_path)
-        normalized_sound = raw_recording.apply_gain(-20.0 - raw_recording.dBFS)
-        # TODO: this doesn't really work. Figure out a better way to handle silent recordings
+        # normalize the recording (if it is too loud) to generate a final file
+        normalized_sound = AudioSegment.from_file(tmp_save_path)
+        if normalized_sound.dBFS > MAX_LOUDNESS:
+            normalized_sound = normalized_sound.apply_gain(MAX_LOUDNESS_PUNISHMENT - normalized_sound.dBFS)
+        # most recording won't fail for this, but it can detect mic problems
         if len(detect_nonsilent(normalized_sound, silence_thresh=-40, seek_step=10)) == 0:
             return False
         normalized_sound.export(final_save_path, format="mp3")
         os.remove(tmp_save_path)
         return True
 
-    # TODO not sure what would be the best way to call this
     def terminate(self):
         self._audio.terminate()

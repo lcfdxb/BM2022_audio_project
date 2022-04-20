@@ -6,6 +6,7 @@ from datetime import datetime
 class Poet:
 
     IDEAS = [
+        "greetings",
         "lucky_number",
         "what_time_is_it",
         "brag_about_my_collection",
@@ -30,6 +31,8 @@ class Poet:
         "All of the gin joints, in all the towns, in all the world, she walks into mine.",
         # lily
         "Oh traveller, if you are in search of that. Don't look outside, look inside yourself, and seek that.",
+        # charlie
+        "To be, or not to be, that is the question.",
         # and more to come...
     ]
 
@@ -38,7 +41,18 @@ class Poet:
 
     def recite(self):
         i_want_to_do = random.choice(self.IDEAS)
-        if i_want_to_do == "lucky_number":
+        if i_want_to_do == "greetings":
+            hour_of_the_day = datetime.now().hour
+            if 5 <= hour_of_the_day <= 9:
+                return "Good Morning!"
+            elif 13 <= hour_of_the_day <= 17:
+                return "Good Afternoon!"
+            elif 18 <= hour_of_the_day <= 20:
+                return "Good Evening!"
+            elif 21 <= hour_of_the_day <= 24:
+                return "Good Night!"
+            return "What a peculiar time to be alive!"
+        elif i_want_to_do == "lucky_number":
             return "My lucky number is %s." % self.lucky_number
         elif i_want_to_do == "brag_about_my_collection":
             return "I have collected %s stories so far." % files_manager.get_number_of_processed_files()

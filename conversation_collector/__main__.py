@@ -1,4 +1,3 @@
-import time
 import logging
 import traceback
 import files_manager
@@ -23,6 +22,10 @@ while True:
     except Exception as e:
         logging.error("Recycling orchestrator " + str(orchestrator.id) + " due to exception: " + str(e))
         traceback.print_exc()
-        orchestrator.audioPlayer.start_playing()  # take care of orphan processes
+        # clean up
+        orchestrator.audioPlayer.start_playing()
+        orchestrator.audioPlayer.terminate()
+        orchestrator.audioRecorder.terminate()
+        # restart
         oid += 1
         respawn_orchestrator()

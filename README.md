@@ -16,23 +16,15 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 ## Priorities
 [Prio] until 5/31
 
-### Art
-- [MED][---] Sound sculpture - design & implement different play styles
-  - By implementing sculptor.reshape_audio() logic
-- [LOW][---] Sound sculpture - switch to different styles per hour in day / number of files / etc.
-  - By implementing sculptor.reshape_audio() logic
-### Platform
-- [MEDIUM][---] Recorder - develop a better algorithm to handle silent recordings
-  - we shouldn't normalize silent recordings to -20 which will create a constant loud static noise
-  - maybe when all recording is universally low, either don't normalize or don't save
+### Software
+- [MEDIUM][---] Sound sculptor - add different sound effects per hour in day / special for burn night etc.
+- [LOW][---] Sound sculptor - make it cooler
 - [LOW][---] UI/UX - add more ideas / poems to the Poet
 ### Hardware
 - [HIGH][milton] Design & implement power solution - solar / batteries
   - https://hive.burningman.org/posts/14167796
   - https://forums.raspberrypi.com/viewtopic.php?t=96544
   - https://howchoo.com/g/mmfkn2rhoth/raspberry-pi-solar-power
-- [HIGH][milton] Make a POC shell
-  - ...and assemble it with full features. Then schedule time to demo this around.
 - [MED][milton] Build the Playa Pole
 - [LOW][---] Make a robust and aesthetically pleasing shell
   - Ideally we can have some artist to do this
@@ -42,7 +34,6 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
   - https://forums.raspberrypi.com/viewtopic.php?t=54812
   - https://forums.raspberrypi.com/viewtopic.php?f=63&t=44684
 ### Production Checklist
-- [todo] Orchestrator - remove exception "I don't feel like humming anymore." when ready for production.
 - [todo] private beta indoors for 3 days
 - [todo] public beta outdoors (with solar) for 12 hours+
 
@@ -55,6 +46,7 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 - numpy `pip3 install numpy`
 - pydub `pip3 install pydub`
 - pyaudio `pip3 install pyaudio`
+- Rubberband `sudo apt-get install rubberband-cli && pip3 install pyrubberband`
 - ESPEAK-NG `sudo apt-get install espeak && pip3 install speake3`
 
 ### Hard-wiring / Setup

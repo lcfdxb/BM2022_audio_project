@@ -56,6 +56,9 @@ class AudioPlayer:
             return True
         return False
 
+    def terminate(self):
+        self._audio.terminate()
+
     # private method
     def _play_wave_files(self, tid, should_stop, files):
         if len(files) < 1:
@@ -65,14 +68,13 @@ class AudioPlayer:
         combined_sound = AudioSegment.from_file(files[0])
         for i in range(1, len(files)):
             sound = AudioSegment.from_file(files[i])
-            combined_sound = combined_sound.overlay(sound)
-        combined_sound = combined_sound.fade_in(3000).fade_out(3000)
-        # although you can use play(combined_sound) but then we lose the ability to stop the thread on demand
+            combined_sound = combined_sound.overlay(sound)  # assuming all are of equal length. Need to sort if length varies
+        # although you can play(combined_sound) but then we lose the ability to stop the thread on demand
         combined_sample = sculptor.reshape_audio(combined_sound)
         stream = self._audio.open(
             format=pyaudio.paFloat32,
             channels=1,
-            rate=48000,
+            rate=48000,  # sorry this is leaky, cuz sculptor also sets the rate to 48k, let's refactor
             output_device_index=self._dev_index,
             output=True
         )

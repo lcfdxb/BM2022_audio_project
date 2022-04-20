@@ -1,4 +1,3 @@
-import random
 import time
 from poet import Poet
 from state_controller import StateController
@@ -17,13 +16,13 @@ class Orchestrator:
         self.poet = Poet()
 
     def work(self):
-        print("ORCH#" + str(self.id) + ": orchestrating....")
-        time.sleep(2)
+        # print("ORCH#" + str(self.id) + ": orchestrating....")
+        time.sleep(1)
         should_record = self.stateController.should_record()
-        print("ORCH#" + str(self.id) + ": should_record?=" + str(should_record))
+        # print("ORCH#" + str(self.id) + ": should_record?=" + str(should_record))
         if should_record:
             self.audioPlayer.stop_playing()
-            time.sleep(2)
+            time.sleep(1)
             self.stateDisplayer.announce_recording_prepare()
             time.sleep(5)
             self.stateDisplayer.announce_recording_begin()
@@ -32,12 +31,8 @@ class Orchestrator:
             self.stateDisplayer.announce_recording_complete(success=succeeded)
         else:
             is_playing = self.audioPlayer.is_playing()
-            print("ORCH#" + str(self.id) + ": is_playing?=" + str(is_playing))
+            # print("ORCH#" + str(self.id) + ": is_playing?=" + str(is_playing))
             if not is_playing:
                 self.stateDisplayer.display_message(self.poet.recite())
                 time.sleep(3)  # this is needed to fix the Jabra traffic issue
                 self.audioPlayer.start_playing()
-
-        # TODO: Test for robustness. Get rid of these below in prod
-        if random.random() < 0.01:
-            raise Exception("I don't feel like humming anymore.")
