@@ -18,14 +18,23 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 
 ### Software
 - [MEDIUM][---] Sound sculptor - add different sound effects per hour in day / special for burn night etc.
+- [MEDIUM][---] Breathing light POC: different patterns for different states. random brain dump:
+  - playing: pulsing yellow
+  - idle: glow white
+  - recording: blinking green
+  - acknowledging button pressed: red single pulse
 - [LOW][---] Sound sculptor - make it cooler
 - [LOW][---] UI/UX - add more ideas / poems to the Poet
 ### Hardware
 - [HIGH][milton] Design & implement power solution - solar / batteries
-  - https://hive.burningman.org/posts/14167796
-  - https://forums.raspberrypi.com/viewtopic.php?t=96544
-  - https://howchoo.com/g/mmfkn2rhoth/raspberry-pi-solar-power
-- [MED][milton] Build the Playa Pole
+  - Current bug: solar doesn't work :(
+  - References
+    - https://hive.burningman.org/posts/14167796
+    - https://forums.raspberrypi.com/viewtopic.php?t=96544
+    - https://howchoo.com/g/mmfkn2rhoth/raspberry-pi-solar-power
+- [MEDIUM][---] Breathing light POC: single LED or LED strip
+  - This looks cool
+  - reference https://www.admfactory.com/breathing-light-led-on-raspberry-pi-using-python/
 - [LOW][---] Make a robust and aesthetically pleasing shell
   - Ideally we can have some artist to do this
   - Directly out of wood? or 3D printed w/ heat-resistant materials?
@@ -33,9 +42,19 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
   - the whole thing needs to be resistant to STRONG wind / heat / rain
   - https://forums.raspberrypi.com/viewtopic.php?t=54812
   - https://forums.raspberrypi.com/viewtopic.php?f=63&t=44684
+### Known bugs
+- [MEDIUM][---] Raspberry Pi changes path to the USB device randomly sometimes, breaking run from usb drive function
+  - 1) implement a more robust usb drive scanning logic
+  - 2) failback to run from desktop files if usb not detected
+### UX Improvements
+- [MEDIUM][---] Raise voice UI volume to the same level of the playback volume
+- [MEDIUM][---] Some people inclined to long press the button thinking they need to
+  - with current logic this will continually spawn one recording session after another, which is not ideal
+  - 1) make sure we don't record button press during recording time
+  - 2) figure out a way to stop people from long pressing
 ### Production Checklist
-- [todo] private beta indoors for 3 days
-- [todo] public beta outdoors (with solar) for 12 hours+
+- [todo] private beta indoors for 3+ days
+- [todo] public beta outdoors (with & without sunlight) for 24+ hours
 
 ## Notes
 
