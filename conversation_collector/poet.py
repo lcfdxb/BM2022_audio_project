@@ -33,6 +33,8 @@ class Poet:
         "Oh traveller, if you are in search of that. Don't look outside, look inside yourself, and seek that.",
         # charlie
         "To be, or not to be, that is the question.",
+        # yohe
+        "We are all in the gutter. But don't forget to look up at the stars.",
         # and more to come...
     ]
 
