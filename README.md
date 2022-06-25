@@ -13,6 +13,80 @@ Copy the `scripts/auto_run_from_usb.sh` to pi's `Desktop`
 
 Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 
+--------------------------------------------------------
+# TODO before the burn
+
+## Software
+[milton] Overhaul UX: prompt with more clarity + multiple different prompts (story, question, sing, memorable experience, etc.)
+
+[milton] Finalize polishing sound sculptor - anything else we can do to make it sound cooler?
+
+[milton] Finalize polishing the poet - add more poems from everyone
+
+[milton] Bugfix: Raspberry Pi changes path to the USB device randomly sometimes, breaking run from usb drive function
+1) implement a more robust usb drive scanning logic
+2) failback to run from desktop files if usb not detected
+
+[milton] Polish: Some people inclined to long press the button thinking they need to
+1) with current logic this will continually spawn one recording session after another, which is not ideal
+2) make sure we don't record button press during recording time
+3) figure out a way to stop people from long pressing
+4) also, raise voice UI volume to the same level of the playback volume
+
+
+## Sculpture
+[  yohe] prototype 3d print-able shell (heat-resistant materials)
+
+[milton] figure out playa-ready shell reinforcement solution - metal wire inside / cage outside?
+
+[milton] fully assemble the sculpture
+
+[milton] build button module and install on the pole
+
+## Supporting Hardware
+[milton] install a collar on the base of the pole, round plate with holes where you can bolt it on the ground
+
+[milton] make the entire pole well lit - use BATTERY powered LEDs
+
+## Power
+[milton] Make sure solar solution works - test outside for 3+ days
+
+--------------------------------------------------------
+
+
+## Notes
+
+### Package Dependency 
+- Stable OS: Raspberry Pi OS (32-bit) `Release 2022-04-04; installed with Raspberry Pi Imager v1.7.2`
+- wave `pip3 install wave`
+- RPI.GPIO `pip3 install RPi.GPIO`
+- numpy `pip3 install numpy`
+- pydub `pip3 install pydub`
+- pyaudio `pip3 install pyaudio`
+- Rubberband `sudo apt-get install rubberband-cli && pip3 install pyrubberband`
+- ESPEAK-NG `sudo apt-get install espeak && pip3 install speake3`
+
+### Hard-wiring / Setup
+- Make sure to update the hard-coded path in files_manager.py `ROOT_PATH` and create sub-directories
+- Also updates `DEVICE_NAME` if you use a different speaker-mic than Jabra SPEAK 410
+
+## Design
+*Installation Design*
+![hardware_design_diagram](./design/Installation&#32;Hardware&#32;Design&#32;v0.1.png)
+
+*Software Design, but mostly outdated*
+![design_diagram](./design/design.png)
+
+
+--------------------------------------------------------
+--------------------------------------------------------
+--------------------------------------------------------
+# Old notes below
+
+## 6/5 BM art team requirements
+- Hardware: install a collar on the base of the pole, round plate with holes where you can bolt it on the ground
+- Hardware: make the entire pole well lit - use BATTERY powered LEDs
+
 ## Priorities
 [Prio] until 5/31
 
@@ -55,26 +129,3 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 ### Production Checklist
 - [todo] private beta indoors for 3+ days
 - [todo] public beta outdoors (with & without sunlight) for 24+ hours
-
-## Notes
-
-### Package Dependency 
-- Stable OS: Raspberry Pi OS (32-bit) `Release 2022-04-04; installed with Raspberry Pi Imager v1.7.2`
-- wave `pip3 install wave`
-- RPI.GPIO `pip3 install RPi.GPIO`
-- numpy `pip3 install numpy`
-- pydub `pip3 install pydub`
-- pyaudio `pip3 install pyaudio`
-- Rubberband `sudo apt-get install rubberband-cli && pip3 install pyrubberband`
-- ESPEAK-NG `sudo apt-get install espeak && pip3 install speake3`
-
-### Hard-wiring / Setup
-- Make sure to update the hard-coded path in files_manager.py `ROOT_PATH` and create sub-directories
-- Also updates `DEVICE_NAME` if you use a different speaker-mic than Jabra SPEAK 410
-
-## Design
-*Installation Design*
-![hardware_design_diagram](./design/Installation&#32;Hardware&#32;Design&#32;v0.1.png)
-
-*Software Design, but mostly outdated*
-![design_diagram](./design/design.png)
