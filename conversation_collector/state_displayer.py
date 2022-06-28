@@ -5,18 +5,18 @@ import random
 class StateDisplayer:
 
     LINES_PREPARE = [
-        "Hello. I will be listening to your voice in a few seconds!",
-        "Hello. I would like to hear your story! I will be listening in a few seconds!",
+        "Hello. I am the collector of stories. I would like to collect a story from you. I will start listening for one minute if you want to share. Please think about it for a few seconds.",
+        "Hello. I am the collector of questions. I would like to collect a question from you. I will start listening for one minute if you have something to ask. Please think about it for a few seconds.",
+        "Hello. I am the collector of songs. I would like to collect a song from you. I will start listening for one minute if you want to sing a song. Please prepare for a few seconds.",
+        "Hello. I am the collector of voices. I would like to collect some sounds from you. I will start listening for one minute. Please prepare for a few seconds then make some sounds.",
     ]
 
     LINES_BEGIN = [
-        "Hello. I am now listening for one minute. Please tell me your story!",
-        "Hello. I am now listening for one minute. The time is all yours!",
+        "Ok, I am listening now!"
     ]
 
     LINES_COMPLETE_SUCCESS = [
-        "Thank you. Your story has been written to my memory.",
-        "Thank you. Your voice is heard.",
+        "Thank you. Your voice is heard. Press the button again to share more.",
     ]
 
     LINES_COMPLETE_FAIL = [

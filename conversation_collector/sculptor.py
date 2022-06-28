@@ -11,13 +11,13 @@ def reshape_audio(audio_segment):
 
     # randomly mess with the audio
     if _lets_do_this(0.3):
-        speed_adjust = float(random.randrange(85, 115)) / 100  # 0.85 - 1.15
+        speed_adjust = float(random.randrange(70, 130)) / 100  # 0.7 - 1.3
         if speed_adjust == 1.0:
             speed_adjust = 0.99  # or this will be fun
         audio_segment = _change_tempo_and_preserve_pitch(audio_segment, tempo=1.0, new_tempo=speed_adjust)
-    elif _lets_do_this(0.03):
+    elif _lets_do_this(0.1):
         audio_segment = _speed_change_also_changes_pitch(audio_segment, speed=0.6)
-    elif _lets_do_this(0.03):
+    elif _lets_do_this(0.1):
         audio_segment = _speed_change_also_changes_pitch(audio_segment, speed=1.4)
 
     # https://github.com/jiaaro/pydub/blob/master/API.markdown#audiosegmentget_array_of_samples

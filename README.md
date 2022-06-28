@@ -17,31 +17,21 @@ Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 # TODO before the burn
 
 ## Software
-[milton] Overhaul UX: prompt with more clarity + multiple different prompts (story, question, sing, memorable experience, etc.)
-
-[milton] Finalize polishing sound sculptor - anything else we can do to make it sound cooler?
-
-[milton] Finalize polishing the poet - add more poems from everyone
-
 [milton] Bugfix: Raspberry Pi changes path to the USB device randomly sometimes, breaking run from usb drive function
 1) implement a more robust usb drive scanning logic
 2) failback to run from desktop files if usb not detected
-
-[milton] Polish: Some people inclined to long press the button thinking they need to
-1) with current logic this will continually spawn one recording session after another, which is not ideal
-2) make sure we don't record button press during recording time
-3) figure out a way to stop people from long pressing
-4) also, raise voice UI volume to the same level of the playback volume
-
+3) also, raise voice UI volume to the same level of the playback volume
 
 ## Sculpture
-[  yohe] prototype 3d print-able shell (heat-resistant materials)
+[yohe] prototype 3d print-able shell (heat-resistant materials)
 
 [milton] figure out playa-ready shell reinforcement solution - metal wire inside / cage outside?
 
 [milton] fully assemble the sculpture
 
 [milton] build button module and install on the pole
+
+[milton] minimal instruction on the pole: "press once to join the party"
 
 ## Supporting Hardware
 [milton] install a collar on the base of the pole, round plate with holes where you can bolt it on the ground

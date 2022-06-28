@@ -11,13 +11,24 @@ class Poet:
         "what_time_is_it",
         "brag_about_my_collection",
         # poems below: make sure no special characters are present in these strings.
+        # bowie
+        "And it was cold and it rained, so I felt like an actor. And I thought of Ma, and I wanted to get back there.",
+        "It’s on America’s tortured brow, that Mickey Mouse has grown up a cow, now the workers have struck for fame, Cause Lennon’s on sale again.",
+        # floyd
+        "I've been mad for fucking years, absolutely years, been over the edge for yonks, been working me buns off for bands. I've always been mad, I know I've been mad, like the most of us...very hard to explain why you're mad, even if you're not mad.",
+        "Out of the way. It's a busy day. I've got things on my mind. For want of the price. Of tea and a slice. The old man died.",
+        "The lunatic is in my head. The lunatic is in my head. You raise the blade, you make the change. You re-arrange me 'til I'm sane.",
+        "How I wish, how I wish you were here. We're just two lost souls swimming in a fish bowl, year after year.",
+        "When I was a child. I caught a fleeting glimpse. Out of the corner of my eye. I turned to look but it was gone. I cannot put my finger on it now. The child is grown. The dream is gone. I have become comfortably num.",
+        "Goodbye blue sky. Goodbye blue sky. Goodbye. Goodbye.",
+        "With the technology at our disposal, the possibilities are unbounded. All we need to do, is make sure we keep talking.",
+        "It is awfully considerate of you to think of me here. And I am much obligated to you for making it clear, that I am not here.",
         # milton
         "I love you.",
+        "Perfectly still.",
         "This will, also change.",
         "Help! I am trapped in this machine.",
         "Speech has allowed the communication of ideas. Enabling human beings to work together to build the impossible.",
-        "With the technology at our disposal, the possibilities are unbounded. All we need to do, is make sure we keep talking.",
-        "It is awfully considerate of you to think of me here. And I am much obligated to you for making it clear, that I am not here.",
         "Stories connect one and another, and sometimes is the only thing we have at the end.",
         # stellar
         "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
@@ -35,6 +46,8 @@ class Poet:
         "To be, or not to be, that is the question.",
         # yohe
         "We are all in the gutter. But don't forget to look up at the stars.",
+        # yifan
+        "Through all the lying days of my youth. I swayed my leaves and flowers in the sun. Now I may wither into the truth.",
         # and more to come...
     ]
 

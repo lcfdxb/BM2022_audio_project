@@ -28,6 +28,7 @@ class Orchestrator:
             self.stateDisplayer.announce_recording_begin()
             self.stateController.ack_recording_began()
             succeeded = self.audioRecorder.record_audio(duration_in_seconds=60)
+            self.stateController.ack_recording_began()  # so if won't immediately record again
             self.stateDisplayer.announce_recording_complete(success=succeeded)
         else:
             is_playing = self.audioPlayer.is_playing()
