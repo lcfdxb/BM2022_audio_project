@@ -29,6 +29,7 @@ class StateDisplayer:
         self._engine.set('voice', 'en-us')
         self._engine.set('speed', '120')
         self._engine.set('pitch', '45')
+        self._engine.set('amplitude', '200')  # 0-200
 
     def display_message(self, message="Hello!"):
         print("I'm saying: " + message)

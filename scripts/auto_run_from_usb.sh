@@ -1,2 +1,3 @@
 sleep 10
-python3 /media/milton/usb_drive/conversation_collector/
+# Milton: actually this runs from desktop as there's an issue with linux changing usb device names. Try to solve that!
+python3 /home/milton/Desktop/conversation_collector

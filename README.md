@@ -13,14 +13,12 @@ Copy the `scripts/auto_run_from_usb.sh` to pi's `Desktop`
 
 Add `@lxterminal -e sh /home/milton/Desktop/auto_run_from_usb.sh`
 
+### Set system default volume level
+
+Set the volume level manually then run this: `sudo alsactl store`
+
 --------------------------------------------------------
 # TODO before the burn
-
-## Software
-[milton] Bugfix: Raspberry Pi changes path to the USB device randomly sometimes, breaking run from usb drive function
-1) implement a more robust usb drive scanning logic
-2) failback to run from desktop files if usb not detected
-3) also, raise voice UI volume to the same level of the playback volume
 
 ## Sculpture
 [yohe] prototype 3d print-able shell (heat-resistant materials)
