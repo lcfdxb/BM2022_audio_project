@@ -21,19 +21,24 @@ class Orchestrator:
         should_record = self.stateController.should_record()
         # print("ORCH#" + str(self.id) + ": should_record?=" + str(should_record))
         if should_record:
+            self.stateDisplayer.display_yellow()
             self.audioPlayer.stop_playing()
             time.sleep(1)
             self.stateDisplayer.announce_recording_prepare()
             time.sleep(5)
             self.stateDisplayer.announce_recording_begin()
             self.stateController.ack_recording_began()
+            self.stateDisplayer.display_teal()
             succeeded = self.audioRecorder.record_audio(duration_in_seconds=60)
+            self.stateDisplayer.display_yellow()
             self.stateController.ack_recording_began()  # so if won't immediately record again
             self.stateDisplayer.announce_recording_complete(success=succeeded)
         else:
             is_playing = self.audioPlayer.is_playing()
             # print("ORCH#" + str(self.id) + ": is_playing?=" + str(is_playing))
             if not is_playing:
+                self.stateDisplayer.display_yellow()
                 self.stateDisplayer.display_message(self.poet.recite())
                 time.sleep(3)  # this is needed to fix the Jabra traffic issue
+                self.stateDisplayer.display_fuchsia()
                 self.audioPlayer.start_playing()

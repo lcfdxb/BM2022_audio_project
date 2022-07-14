@@ -21,15 +21,12 @@ Set the volume level manually then run this: `sudo alsactl store`
 # TODO before the burn
 
 ## Sculpture
-[yohe] prototype 3d print-able shell (heat-resistant materials)
-
-[milton] figure out playa-ready shell reinforcement solution - metal wire inside / cage outside?
-
 [milton] fully assemble the sculpture
-
-[milton] build button module and install on the pole
-
-[milton] minimal instruction on the pole: "press once to join the party"
+- button
+- solar
+- light
+- minimal instruction on the pole: "press once to join the party"
+- finally do a prod test
 
 ## Supporting Hardware
 [milton] install a collar on the base of the pole, round plate with holes where you can bolt it on the ground
@@ -37,7 +34,7 @@ Set the volume level manually then run this: `sudo alsactl store`
 [milton] make the entire pole well lit - use BATTERY powered LEDs
 
 ## Power
-[milton] Make sure solar solution works - test outside for 3+ days
+[milton] Make sure power solution works - test outside for 3+ days
 
 --------------------------------------------------------
 
@@ -46,13 +43,21 @@ Set the volume level manually then run this: `sudo alsactl store`
 
 ### Package Dependency 
 - Stable OS: Raspberry Pi OS (32-bit) `Release 2022-04-04; installed with Raspberry Pi Imager v1.7.2`
-- wave `pip3 install wave`
-- RPI.GPIO `pip3 install RPi.GPIO`
-- numpy `pip3 install numpy`
-- pydub `pip3 install pydub`
-- pyaudio `pip3 install pyaudio`
-- Rubberband `sudo apt-get install rubberband-cli && pip3 install pyrubberband`
-- ESPEAK-NG `sudo apt-get install espeak && pip3 install speake3`
+- wave `sudo pip3 install wave`
+- RPI.GPIO `sudo pip3 install RPi.GPIO`
+- numpy `sudo pip3 install numpy`
+- pydub `sudo pip3 install pydub`
+- pyaudio `sudo pip3 install pyaudio`
+- Rubberband `sudo apt-get install rubberband-cli && sudo pip3 install pyrubberband`
+- BiblioPixel `sudo pip3 install bibliopixel`
+- RPiWS281x `sudo pip3 install rpi_ws281x`
+- ESPEAK-NG see below instructions:
+  - `sudo apt install espeak-ng espeak-ng-data libespeak-ng-dev`
+  - `sudo pip3 install py-espeak-ng`
+  - Open /etc/modprobe.d/raspi-blacklist.conf and add blacklist snd_bcm2835
+  - Open /lib/modprobe.d/aliases.conf and comment out the line options snd-usb-audio index=-2
+  - sudo nano /boot/config.txt then comment out this line: dtparam=audio=on
+  - sudo reboot. Then check with `aplay -l`
 
 ### Hard-wiring / Setup
 - Make sure to update the hard-coded path in files_manager.py `ROOT_PATH` and create sub-directories

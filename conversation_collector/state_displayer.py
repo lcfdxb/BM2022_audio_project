@@ -1,8 +1,16 @@
-import speake3
+from espeakng import ESpeakNG
 import random
+from bibliopixel.drivers.PiWS281X import PiWS281X
+from led_controller import BiblioPixelLedController
+
+COLOR_FUCHSIA = (255, 0, 255)
+COLOR_TEAL = (0, 255, 255)
+COLOR_YELLOW = (255, 255, 0)
 
 
 class StateDisplayer:
+    # led_controller to light up the leds
+    _led_controller = None
 
     LINES_PREPARE = [
         "Hello. I am the collector of stories. I would like to collect a story from you. I will start listening for one minute if you want to share. Please think about it for a few seconds.",
@@ -25,16 +33,14 @@ class StateDisplayer:
     ]
 
     def __init__(self):
-        self._engine = speake3.Speake()
-        self._engine.set('voice', 'en-us')
-        self._engine.set('speed', '120')
-        self._engine.set('pitch', '45')
-        self._engine.set('amplitude', '200')  # 0-200
+        self._engine = ESpeakNG(voice='en-us')
+        self._engine.pitch = 32
+        self._engine.speed = 125
+        self._led_controller = BiblioPixelLedController(driver=PiWS281X(1, gpio=13))  # numLeds == 1
 
     def display_message(self, message="Hello!"):
         print("I'm saying: " + message)
-        self._engine.say(message)
-        self._engine.talkback()
+        self._engine.say(message, sync=True)
 
     def announce_recording_prepare(self):
         self.display_message(message=random.choice(self.LINES_PREPARE))
@@ -47,3 +53,12 @@ class StateDisplayer:
             self.display_message(message=random.choice(self.LINES_COMPLETE_SUCCESS))
         else:
             self.display_message(message=random.choice(self.LINES_COMPLETE_FAIL))
+
+    def display_fuchsia(self):
+        self._led_controller.turn_on_color(COLOR_FUCHSIA)
+
+    def display_teal(self):
+        self._led_controller.turn_on_color(COLOR_TEAL)
+
+    def display_yellow(self):
+        self._led_controller.turn_on_color(COLOR_YELLOW)
