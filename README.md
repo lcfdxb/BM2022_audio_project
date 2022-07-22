@@ -24,16 +24,16 @@ Set the volume level manually then run this: `sudo alsactl store`
 [milton] fully assemble the sculpture
 - button
 - solar
-- light
-- minimal instruction on the pole: "press once to join the party"
-- finally do a prod test
+- light (battery leds)
 
 ## Supporting Hardware
-[milton] install a collar on the base of the pole, round plate with holes where you can bolt it on the ground
+[milton] install a collar on the base of the pole, round plate with holes where you can bolt it on the ground - people may knock it over
 
-[milton] make the entire pole well lit - use BATTERY powered LEDs
+[milton] how to prevent this from being stolen
 
-## Power
+[milton] modular design for swappable top solar panel but secure against wind etc.
+
+## Gameday
 [milton] Make sure power solution works - test outside for 3+ days
 
 --------------------------------------------------------

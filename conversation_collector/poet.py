@@ -72,6 +72,8 @@ class Poet:
         "Rage against the dying of the light.",
         # nicole
         "These fragments I have shored against my ruins.",
+        # jinghui
+        "Wood is an old name for forest. In the wood there are paths, mostly overgrown, that come to an abrupt stop where the wood is untrodden.",
         # assorted lyrics
         "So every time. The curtain falls. Every time the curtain falls on some forgotten life. It is because we all stood by silent and indifferent.",
         "Be like water, where we'll end up, we don't know.",
